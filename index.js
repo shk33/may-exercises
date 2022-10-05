@@ -44,28 +44,43 @@ const iceCreamCatalog = [
 
 ];
 
+const calculateAndDisplayIceCreams = () => {
+    const maxPriceIceCream =  Math.max(...iceCreamThatUserCanBuy.map(iceCream => iceCream.price));
+    console.log({ iceCreamThatUserCanBuy })
+    console.log({ maxPriceIceCream })
+    
+    const mostExpensiveIceCreamsThatYouCanBuy = iceCreamThatUserCanBuy.filter(iceCream => iceCream.price === maxPriceIceCream);
+    console.log({ mostExpensiveIceCreamsThatYouCanBuy })
+    
+    
+    let iceCreamsInfo = 'You can buy the following ice creams\n';
+    mostExpensiveIceCreamsThatYouCanBuy.forEach(iceCream => {
+        iceCreamsInfo += `${iceCream.description}: ${iceCream.priceStr} ${iceCream.currency} \n`;
+    })
+    const change = moneyAmount - maxPriceIceCream;
+    
+    iceCreamsInfo += `Your change is: ${parseFloat(change).toFixed(2)}`
+    console.log(iceCreamsInfo)
+}
 
-let moneyAmountStr = prompt("¿Cuanto dinero tienes?"); // STRING
-let moneyAmount = parseFloat(moneyAmountStr); // Parse to Number
+const displayNoIceCreamForYou = () => {
+    console.log('You cannot buy anything.');
+}
 
+const main = () => {
+    let moneyAmountStr = prompt("¿Cuanto dinero tienes?"); // STRING
+    let moneyAmount = parseFloat(moneyAmountStr); // Parse to Number
+    
+    
+    // Get the ice creams list that I can buy
+    const iceCreamThatUserCanBuy = iceCreamCatalog.filter(iceCream => iceCream.price <= moneyAmount );
+    
+    if(iceCreamThatUserCanBuy.length > 0){
+        calculateAndDisplayIceCreams();
+    } else {
+        displayNoIceCreamForYou();
+    }
+}
 
-// Get the ice creams list that I can buy
-const iceCreamThatUserCanBuy = iceCreamCatalog.filter(iceCream => iceCream.price <= moneyAmount );
+main();
 
-const maxPriceIceCream =  Math.max(...iceCreamThatUserCanBuy.map(iceCream => iceCream.price));
-console.log({ iceCreamThatUserCanBuy })
-console.log({ maxPriceIceCream })
-
-const mostExpensiveIceCreamsThatYouCanBuy = iceCreamThatUserCanBuy.filter(iceCream => iceCream.price === maxPriceIceCream);
-console.log({ mostExpensiveIceCreamsThatYouCanBuy })
-
-
-let iceCreamsInfo = 'You can buy the following ice creams\n';
-mostExpensiveIceCreamsThatYouCanBuy.forEach(iceCream => {
-    iceCreamsInfo += `${iceCream.description}: ${iceCream.priceStr} ${iceCream.currency} \n`;
-})
-const change = moneyAmount - maxPriceIceCream;
-
-iceCreamsInfo += `Your change is: ${parseFloat(change).toFixed(2)}`
-// iceCreamsInfo += `Your change is: ${change}`
-console.log(iceCreamsInfo)
