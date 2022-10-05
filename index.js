@@ -69,16 +69,3 @@ const change = moneyAmount - maxPriceIceCream;
 iceCreamsInfo += `Your change is: ${parseFloat(change).toFixed(2)}`
 // iceCreamsInfo += `Your change is: ${change}`
 console.log(iceCreamsInfo)
-
-// if (moneyAmount == "$1.5 USD")     {
-// alert("Helado de crema $1 USD");
-// }
-
-// else if (moneyAmount == "$1.7 USD")  {
-// alert("Bombom de helado marca Heladovich $1.7 USD");
-// }
-
-// else if (moneyAmount = "$3 USD")  {
-// alert("Potecito de helado con confites $2.9 USD o " + ( "Pote de 1/4 kg de helado $2.9 USD"));
-// alert("resto de " + 3 % 2.9);
-// }
